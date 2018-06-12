@@ -92,15 +92,35 @@ var storeCenter = {
   minHourCust: 11,
   maxHourCust: 38,
   avgUnitSale: 3.7,
-  storeHours: [],
+  hourlySales: [],
   randomCust: function() {
     var min = Math.ceil(this.minHourCust);
     var max = Math.floor(this.maxHourCust);
     return Math.floor(Math.random() * max - min + 1) + min;
   },
   unitsSold: function() {
-    
-  }
+    for (var i = 0; i < 15; i++) {
+      this.hourlySales.push(Math.floor(this.randomCust() * this.avgUnitSale));
+    }
+  },
+  populateLi: function() {
+    var ulElement = document.getElementById('center');
+    for (var i =0; i < this.hourlySales.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = businessHours[i] + ': ' + this.hourlySales[i] + ' cookies';
+      ulElement.appendChild(liEl);
+    }
+  },
+  populateLiTotal: function() {
+    var accumulator = 0;
+    for (var i = 0; i < this.hourlySales.length; i++) {
+      accumulator += this.hourlySales[i];
+    }
+    var ulElement = document.getElementById('center');
+    var liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + accumulator + ' cookies';
+    ulElement.appendChild(liEl);
+  },
 };
 
 var storeHill = {
@@ -128,3 +148,7 @@ storeAirport.unitsSold();
 storeAirport.populateLiHourly();
 storeAirport.populateLiTotal();
 // calling functions for Seattle Center Store
+storeCenter.randomCust();
+storeCenter.unitsSold();
+storeCenter.populateLi();
+storeCenter.populateLiTotal();
