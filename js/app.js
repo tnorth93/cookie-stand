@@ -1,5 +1,7 @@
 'use strict';
 
+// placeholder?? list for hours because i don't know how to do it otherwise... yet
+var businessHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 // Stores the min/max hourly customers, and the average cookies per customer, in object properties
 var storePike = {
   minHourCust: 23,
@@ -16,7 +18,7 @@ var storePike = {
 
   // calc and store simulated amounts of cookies sold or each hour at specific store using avg cookies purchased and random customers generated (for loop)
   unitsSold: function() {
-    for ( var i = 0; i < 14; i++) {
+    for ( var i = 0; i < 15; i++) {
       storePike.storeHours.push(Math.floor(storePike.randomCust() * storePike.avgUnitSale));
     }
   },
@@ -28,16 +30,32 @@ var storePike = {
       // create list items in html doc
       var liEl = document.createElement('li');
       // use storeHours array to populate lis with selling data
-      liEl.textContent = storePike.storeHours[i];
+      liEl.textContent = businessHours[i] + ': ' + storePike.storeHours[i] + ' cookies';
       // append the content to display in doc
       ulElement.appendChild(liEl);
     }
-  }
+  },
+  // populate the final li with the total from all hours
+  populateLiTotal: function() {
+    var accumulator = 0;
+    for(var i = 0; i < storePike.storeHours.length; i++) {
+      accumulator += storePike.storeHours[i];
+      console.log(accumulator);
+    }
+    // create another li for the total sales
+    var ulElement = document.getElementById('pike');
+    var liTotal = document.createElement('li');
+    // set li content to the sum of all numbers in the storeHours array
+    liTotal.textContent = 'Total: ' + accumulator + ' cookies';
+    // append li to end of hour list in html doc
+    ulElement.appendChild(liTotal);
+  },
 };
 
 storePike.randomCust();
 storePike.unitsSold();
 storePike.populateLi();
+storePike.populateLiTotal();
 
 var storeAirport = {
   minHourCust: 3,
