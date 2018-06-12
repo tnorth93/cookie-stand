@@ -167,7 +167,31 @@ var storeAlki = {
     var min = Math.ceil(this.minHourCust);
     var max = Math.floor(this.maxHourCust);
     return Math.floor(Math.random() * max - min +1) + min;
-  }
+  },
+  unitsSold: function() {
+    for (var i = 0; i < 15; i++) {
+      this.storeHours.push(Math.floor(this.randomCust() * this.avgUnitSale));
+      console.log(this.storeHours);
+    }
+  },
+  populateLi: function() {
+    var ulElement = document.getElementById('alki');
+    for (var i = 0; i < this.storeHours.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = businessHours[i] + ': ' + this.storeHours[i] + ' cookies';
+      ulElement.appendChild(liEl);
+    }
+  },
+  populateLiTotal: function() {
+    var ulElement = document.getElementById('alki');
+    var accumulator = 0;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      accumulator += this.storeHours[i];
+    }
+    var liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + accumulator + ' cookies';
+    ulElement.appendChild(liEl);
+  },
 };
 
 // calling functions for Pike store
@@ -191,4 +215,8 @@ storeHill.unitsSold();
 storeHill.populateLi();
 storeHill.populateLiTotal();
 // calling functions for Alki store
+storeAlki.randomCust();
+storeAlki.unitsSold();
+storeAlki.populateLi();
+storeAlki.populateLiTotal();
 
