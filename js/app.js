@@ -128,6 +128,34 @@ var storeHill = {
   maxHourCust: 38,
   avgUnitSale: 2.3,
   storeHours: [],
+  randomCust: function() {
+    var min = Math.ceil(this.minHourCust);
+    var max = Math.floor(this.maxHourCust);
+    return Math.floor(Math.random() * max - min + 1) + min;
+  },
+  unitsSold: function() {
+    for (var i = 0; i < 15; i++) {
+      this.storeHours.push(Math.floor(this.randomCust() * this.avgUnitSale));
+    }
+  },
+  populateLi: function() {
+    var ulElement = document.getElementById('hill');
+    for (var i = 0; i < this.storeHours.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = businessHours[i] + ': ' + this.storeHours[i] + ' cookies';
+      ulElement.appendChild(liEl);
+    }
+  },
+  populateLiTotal: function() {
+    var accumulator = 0;
+    var ulElement = document.getElementById('hill');
+    for (var i = 0; i < this.storeHours.length; i++) {
+      accumulator += this.storeHours[i];
+    }
+    var liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + accumulator + ' cookies';
+    ulElement.appendChild(liEl);
+  },
 };
 
 var storeAlki = {
@@ -135,6 +163,11 @@ var storeAlki = {
   maxHourCust: 16,
   avgUnitSale: 4.6,
   storeHours: [],
+  randomCust: function() {
+    var min = Math.ceil(this.minHourCust);
+    var max = Math.floor(this.maxHourCust);
+    return Math.floor(Math.random() * max - min +1) + min;
+  }
 };
 
 // calling functions for Pike store
@@ -152,3 +185,10 @@ storeCenter.randomCust();
 storeCenter.unitsSold();
 storeCenter.populateLi();
 storeCenter.populateLiTotal();
+// calling functions for Cap Hill store
+storeHill.randomCust();
+storeHill.unitsSold();
+storeHill.populateLi();
+storeHill.populateLiTotal();
+// calling functions for Alki store
+
