@@ -54,3 +54,21 @@ li:nth-of-type(16) {
   width: 90%;
   opacity: 40%;
 }
+
+th {
+  width: 10px;
+  margin: 5px;
+  background-color: brown;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+tr {
+  background-color: blue;
+  border: 2px solid black;
+  width: 15px;
+}
+
+td {
+  border: 2px solid black;
+}
