@@ -12,6 +12,7 @@ function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   this.avg = avgUnitSale;
   this.customersPerHour = [];
   this.cookiesSoldPerHour = [];
+  this.totalCookiesSold = 0;
   allStores.push(this);
   // this.randomCust = function(){
   //   var min = Math.ceil(this.minHourCust);
@@ -36,16 +37,20 @@ Store.prototype.randomCust = function() {
 Store.prototype.unitsSold = function() {
   for (var i = 0; i < this.customersPerHour.length; i++) {
     this.cookiesSoldPerHour.push(Math.floor(this.customersPerHour[i] * this.avg));
+    this.totalCookiesSold += this.cookiesSoldPerHour[i];
   }
 };
 
 function makeHeaderRow() {
   var tableHeader = document.getElementById('table');
-  for (var i = -1; i < businessHours.length + 1; i++) {
+  for (var i = -1; i < businessHours.length; i++) {
     var thEl = document.createElement('th');
     thEl.textContent = businessHours[i];
     tableHeader.appendChild(thEl);
   }
+  var thElTotal = document.createElement('th');
+  thElTotal.textContent = 'Total';
+  tableHeader.appendChild(thElTotal);
 }
 
 Store.prototype.makeTableRow = function() {
@@ -54,11 +59,14 @@ Store.prototype.makeTableRow = function() {
     var tableRow = document.createElement('tr');
     tableRow.textContent = allStores[i].loc;
     table.appendChild(tableRow);
-    for (var n = 0; n < this.cookiesSoldPerHour.length + 1; n++) {
+    for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
       var tableData = document.createElement('td');
       tableData.textContent = allStores[i].cookiesSoldPerHour[n];
       tableRow.appendChild(tableData);
     }
+    var tableDataTotal = document.createElement('td');
+    tableDataTotal.textContent = allStores[i].totalCookiesSold;
+    tableRow.appendChild(tableDataTotal);
   }
 };
 
@@ -88,7 +96,7 @@ var airport = new Store('SeaTac Airport', 3, 24, 1.2);
 var center = new Store('Seattle Center', 11, 38, 3.7);
 var hill = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki', 2, 16, 4.6);
-makeHeaderRow();
+
 pike.randomCust();
 pike.unitsSold();
 
@@ -105,7 +113,7 @@ hill.unitsSold();
 alki.randomCust();
 alki.unitsSold();
 
-
+makeHeaderRow();
 pike.makeTableRow();
 console.log(allStores);
 
