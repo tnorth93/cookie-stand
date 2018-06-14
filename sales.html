@@ -8,5 +8,22 @@
   <h1>Salmon Cookie Sales</h1>
   <table id="table"></table>
 
+  <form>
+    <fieldset>
+      <legend>Add A New Store</legend>
+      <label for="storeLocation">Location:</label>
+      <input name="storeLocation" type="text" required>
+
+      <label for="minCust">Minimum Hourly Customers:</label>
+      <input name="minCust" type="number" required>
+
+      <label for="maxCust">Maximum Hourly Customers:</label>
+      <input name="maxCust" type="number" required>
+
+      <label for="avgUnitSale">Average of Cookies Sold Per Customer:</label>
+      <input name="avgUnitSale" type="number" required>
+    </fieldset>
+  </form>
+
   <script src="js/app.js"></script>
 </body>
