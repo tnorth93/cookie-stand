@@ -61,7 +61,8 @@ legend {
 input {
   margin: 10px auto;
   text-align: center;
-  display: block
+  display: block;
+  line-height: 18px
 }
 
 label {
