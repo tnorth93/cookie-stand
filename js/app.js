@@ -16,13 +16,6 @@ function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   allStores.push(this);
 }
 
-// GENERATING STORE OBJECTS-------------------------------------
-var pike = new Store('First and Pike', 23, 65, 6.3);
-var airport = new Store('SeaTac Airport', 3, 24, 1.2);
-var center = new Store('Seattle Center', 11, 38, 3.7);
-var hill = new Store('Capitol Hill', 20, 38, 2.3);
-var alki = new Store('Alki', 2, 16, 4.6);
-
 // GENERATE RANDOM NUMBER OF CUSTOMERS EACH HOUR LOGIC-----------------
 Store.prototype.randomCust = function() {
   for (var i = 0; i < 15; i++) {
@@ -69,18 +62,30 @@ Store.prototype.makeTableRow = function() {
   tableRow.appendChild(tableDataTotal);
 };
 
-// GENERATE TABLE FOOTER LOGIC
+// GENERATE TABLE FOOTER LOGIC----------------------------------------
 function makeTableFooter() {
+  var table = document.getElementById('table');
+  var tFootTotal = document.createElement('td');
+  tFootTotal.textContent = 'Total';
+  table.appendChild(tFootTotal);
   for (var i = 0; i < businessHours.length; i++) {
     var storage = 0;
-    for (var n = 0; n < allStores.length; i++) {
+    for (var n = 0; n < allStores.length; n++) {
       storage += allStores[n].cookiesSoldPerHour[i];
-      console.log(storage);
     }
+    var tFoot = document.createElement('td');
+    tFoot.textContent = storage;
+    table.appendChild(tFoot);
+    console.log(storage);
   }
-  console.log(storage);
 }
 
+// GENERATING STORE OBJECTS-------------------------------------
+var pike = new Store('First and Pike', 23, 65, 6.3);
+var airport = new Store('SeaTac Airport', 3, 24, 1.2);
+var center = new Store('Seattle Center', 11, 38, 3.7);
+var hill = new Store('Capitol Hill', 20, 38, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
 
 // GENERATE SALES DATA
 pike.randomCust();
@@ -101,7 +106,6 @@ airport.makeTableRow();
 center.makeTableRow();
 hill.makeTableRow();
 alki.makeTableRow();
-
 makeTableFooter();
 
 // DO NOT DELETE: this makes all the table rows/data in one fell swoop
