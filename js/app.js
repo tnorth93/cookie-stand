@@ -112,7 +112,7 @@ new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Alki', 2, 16, 4.6);
 
 storeForm.addEventListener('submit', Store.addNewStore);
-
+makeTableFooter();
 // DO NOT DELETE: this makes all the table rows/data in one fell swoop
 // Store.prototype.makeTableRow = function() {
 //   for (var i = 0; i < allStores.length; i++) {
