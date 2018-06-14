@@ -1,11 +1,10 @@
 'use strict';
 
-// placeholder?? list for hours because i don't know how to do it otherwise... yet
+// GLOBAL VARIABLES
 var businessHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var allStores = [];
-var cookieTotalPerHourAllStores = [];
 
-// lets do a constructor
+// CONSTRUCTOR---------------------------------------------------
 function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   this.loc = location;
   this.min = minHourCust;
@@ -17,6 +16,14 @@ function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   allStores.push(this);
 }
 
+// GENERATING STORE OBJECTS-------------------------------------
+var pike = new Store('First and Pike', 23, 65, 6.3);
+var airport = new Store('SeaTac Airport', 3, 24, 1.2);
+var center = new Store('Seattle Center', 11, 38, 3.7);
+var hill = new Store('Capitol Hill', 20, 38, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
+
+// GENERATE RANDOM NUMBER OF CUSTOMERS EACH HOUR LOGIC-----------------
 Store.prototype.randomCust = function() {
   for (var i = 0; i < 15; i++) {
     var min = Math.ceil(this.min);
@@ -25,6 +32,7 @@ Store.prototype.randomCust = function() {
   }
 };
 
+// GENERATE SALES FOR EACH HOUR HOUR LOGIC-----------------------------
 Store.prototype.unitsSold = function() {
   for (var i = 0; i < this.customersPerHour.length; i++) {
     this.cookiesSoldPerHour.push(Math.floor(this.customersPerHour[i] * this.avg));
@@ -32,7 +40,7 @@ Store.prototype.unitsSold = function() {
   }
 };
 
-// GENERATE TABLE HEADER
+// GENERATE TABLE HEADER LOGIC-----------------------------------------
 function makeHeaderRow() {
   var table = document.getElementById('table');
   for (var i = -1; i < businessHours.length; i++) {
@@ -45,16 +53,47 @@ function makeHeaderRow() {
   table.appendChild(thElTotal);
 }
 
-// GENERATE TABLEFOOTER
-function makeFooterRow() {
+// GENERATE TABLE DATA LOGIC-------------------------------------------
+Store.prototype.makeTableRow = function() {
   var table = document.getElementById('table');
-  for(var i = 0; i > businessHours.length; i++) {
-    var tFoot = document.createElement('tfoot');
-    tFoot.textContent = allStores.
+  var tableRow = document.createElement('tr');
+  tableRow.textContent = this.loc;
+  table.appendChild(tableRow);
+  for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
+    var tableData = document.createElement('td');
+    tableData.textContent = this.cookiesSoldPerHour[n];
+    tableRow.appendChild(tableData);
   }
-}
+  var tableDataTotal = document.createElement('td');
+  tableDataTotal.textContent = this.totalCookiesSold;
+  tableRow.appendChild(tableDataTotal);
+};
 
-    // DO NOT DELETE this makes all the table rows/data in one fell swoop
+// GENERATE SALES DATA
+pike.randomCust();
+pike.unitsSold();
+
+airport.randomCust();
+airport.unitsSold();
+
+center.randomCust();
+center.unitsSold();
+
+hill.randomCust();
+hill.unitsSold();
+
+alki.randomCust();
+alki.unitsSold();
+
+// RENDER TABLE
+makeHeaderRow();
+pike.makeTableRow();
+airport.makeTableRow();
+center.makeTableRow();
+hill.makeTableRow();
+alki.makeTableRow();
+
+// DO NOT DELETE: this makes all the table rows/data in one fell swoop
 // Store.prototype.makeTableRow = function() {
 //   for (var i = 0; i < allStores.length; i++) {
 //     var table = document.getElementById('table');
@@ -71,80 +110,6 @@ function makeFooterRow() {
 //     tableRow.appendChild(tableDataTotal);
 //   }
 // };
-
-// this makes table rows/data separately for each store
-Store.prototype.makeTableRow = function() {
-  var table = document.getElementById('table');
-  var tableRow = document.createElement('tr');
-  tableRow.textContent = this.loc;
-  table.appendChild(tableRow);
-  for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
-    var tableData = document.createElement('td');
-    tableData.textContent = this.cookiesSoldPerHour[n];
-    tableRow.appendChild(tableData);
-  }
-  var tableDataTotal = document.createElement('td');
-  tableDataTotal.textContent = this.totalCookiesSold;
-  tableRow.appendChild(tableDataTotal);
-};
-
-
-
-
-// Store.prototype.makeTableData = function() {
-//   var table = document.getElementById('table');
-//   for (var i = 0; i < this.cookiesSoldPerHour.length; i ++) {
-//     var tableData = document.createElement('td');
-//     tableData.textContent = this.cookiesSoldPerHour[i];
-//     table.appendChild(tableData);
-//   }
-// };
-
-// function makeTableRow() {
-//   var table = document.getElementById('table');
-//   for (var i = 0; i < allStores.length; i++) {
-//     var tableRow = document.createElement('tr');
-//     tableRow.textContent = allStores[i].loc;
-//     table.appendChild(tableRow);
-//   }
-// }
-
-
-
-
-var pike = new Store('First and Pike', 23, 65, 6.3);
-var airport = new Store('SeaTac Airport', 3, 24, 1.2);
-var center = new Store('Seattle Center', 11, 38, 3.7);
-var hill = new Store('Capitol Hill', 20, 38, 2.3);
-var alki = new Store('Alki', 2, 16, 4.6);
-
-pike.randomCust();
-pike.unitsSold();
-
-// pike.makeTableData();
-airport.randomCust();
-airport.unitsSold();
-
-center.randomCust();
-center.unitsSold();
-
-hill.randomCust();
-hill.unitsSold();
-
-alki.randomCust();
-alki.unitsSold();
-
-makeHeaderRow();
-pike.makeTableRow();
-console.log(allStores);
-
-
-
-
-
-
-
-
 
 // // Stores the min/max hourly customers, and the average cookies per customer, in object properties
 // var storePike = {
