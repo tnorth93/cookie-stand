@@ -5,26 +5,27 @@ body {
 }
 
 h1 {
-  margin: 10px auto;
+  margin: 15px auto;
   text-align: center;
   font-size: 70px;
   font-family: 'Lobster', cursive;
 }
 
 table {
-  width: 960px;
+  width: 1060px;
   margin: 15px auto;
   box-sizing: border-box;
   background-color:#72FA80;
   border: 8px solid rgb(60, 70, 99);
   text-align: center;
+  empty-cells: hide;
 }
 
 th {
   border: 1px solid rgb(60, 70, 99);
   border-radius: 12px;
   margin-top: 20px;
-  padding: 10px;
+  padding: 12px;
   font-weight: bolder;
 }
 
@@ -40,15 +41,43 @@ td {
   border-radius: 12px;
 }
 
-td:nth-of-type(1) {
-  font-weight: bolder;
-}
-
 form {
   margin: 10px auto;
-  width: 600px;
+  width: 400px;
   background-color: #72FA80;
   border: 8px solid rgb(60, 70, 99);
   box-sizing: border-box;
   padding: 10px;
+}
+
+legend {
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  font-weight: bolder;
+  color: rgb(60, 70, 99);
+  font-size: 45px;
+}
+
+input {
+  margin: 10px auto;
+  text-align: center;
+  display: block
+}
+
+label {
+  margin: 10px auto;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  color: white;
+  font-weight: bolder;
+  border-radius: 12px;
+  background-color: rgb(60, 70, 99);
+  border: 1px solid rgb(60, 70, 99);
 }
