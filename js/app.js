@@ -3,6 +3,7 @@
 // placeholder?? list for hours because i don't know how to do it otherwise... yet
 var businessHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var allStores = [];
+var cookieTotalPerHourAllStores = [];
 
 // lets do a constructor
 function Store(location, minHourCust, maxHourCust, avgUnitSale) {
@@ -14,16 +15,6 @@ function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   this.cookiesSoldPerHour = [];
   this.totalCookiesSold = 0;
   allStores.push(this);
-  // this.randomCust = function(){
-  //   var min = Math.ceil(this.minHourCust);
-  //   var max = Math.floor(this.maxhourCust);
-  //   return Math.floor(Math.random() * (max - min +1)) + min;
-  // };
-  // this.unitsSold = function() {
-  //   for (var i = 0; i < 15; i++) {
-  //     this.storeHours.push(Math.floor(this.randomCust() * this.avgUnitSale));
-  //   }
-  // };
 }
 
 Store.prototype.randomCust = function() {
@@ -41,34 +32,64 @@ Store.prototype.unitsSold = function() {
   }
 };
 
+// GENERATE TABLE HEADER
 function makeHeaderRow() {
-  var tableHeader = document.getElementById('table');
+  var table = document.getElementById('table');
   for (var i = -1; i < businessHours.length; i++) {
     var thEl = document.createElement('th');
     thEl.textContent = businessHours[i];
-    tableHeader.appendChild(thEl);
+    table.appendChild(thEl);
   }
   var thElTotal = document.createElement('th');
   thElTotal.textContent = 'Total';
-  tableHeader.appendChild(thElTotal);
+  table.appendChild(thElTotal);
 }
 
-Store.prototype.makeTableRow = function() {
-  for (var i = 0; i < allStores.length; i++) {
-    var table = document.getElementById('table');
-    var tableRow = document.createElement('tr');
-    tableRow.textContent = allStores[i].loc;
-    table.appendChild(tableRow);
-    for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
-      var tableData = document.createElement('td');
-      tableData.textContent = allStores[i].cookiesSoldPerHour[n];
-      tableRow.appendChild(tableData);
-    }
-    var tableDataTotal = document.createElement('td');
-    tableDataTotal.textContent = allStores[i].totalCookiesSold;
-    tableRow.appendChild(tableDataTotal);
+// GENERATE TABLEFOOTER
+function makeFooterRow() {
+  var table = document.getElementById('table');
+  for(var i = 0; i > businessHours.length; i++) {
+    var tFoot = document.createElement('tfoot');
+    tFoot.textContent = allStores.
   }
+}
+
+    // DO NOT DELETE this makes all the table rows/data in one fell swoop
+// Store.prototype.makeTableRow = function() {
+//   for (var i = 0; i < allStores.length; i++) {
+//     var table = document.getElementById('table');
+//     var tableRow = document.createElement('tr');
+//     tableRow.textContent = allStores[i].loc;
+//     table.appendChild(tableRow);
+//     for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
+//       var tableData = document.createElement('td');
+//       tableData.textContent = allStores[i].cookiesSoldPerHour[n];
+//       tableRow.appendChild(tableData);
+//     }
+//     var tableDataTotal = document.createElement('td');
+//     tableDataTotal.textContent = allStores[i].totalCookiesSold;
+//     tableRow.appendChild(tableDataTotal);
+//   }
+// };
+
+// this makes table rows/data separately for each store
+Store.prototype.makeTableRow = function() {
+  var table = document.getElementById('table');
+  var tableRow = document.createElement('tr');
+  tableRow.textContent = this.loc;
+  table.appendChild(tableRow);
+  for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
+    var tableData = document.createElement('td');
+    tableData.textContent = this.cookiesSoldPerHour[n];
+    tableRow.appendChild(tableData);
+  }
+  var tableDataTotal = document.createElement('td');
+  tableDataTotal.textContent = this.totalCookiesSold;
+  tableRow.appendChild(tableDataTotal);
 };
+
+
+
 
 // Store.prototype.makeTableData = function() {
 //   var table = document.getElementById('table');
