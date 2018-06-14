@@ -41,7 +41,7 @@ Store.prototype.unitsSold = function() {
 };
 
 // GENERATE TABLE HEADER LOGIC-----------------------------------------
-function makeHeaderRow() {
+function makeTableHeader() {
   var table = document.getElementById('table');
   for (var i = -1; i < businessHours.length; i++) {
     var thEl = document.createElement('th');
@@ -69,29 +69,40 @@ Store.prototype.makeTableRow = function() {
   tableRow.appendChild(tableDataTotal);
 };
 
+// GENERATE TABLE FOOTER LOGIC
+function makeTableFooter() {
+  for (var i = 0; i < businessHours.length; i++) {
+    var storage = 0;
+    for (var n = 0; n < allStores.length; i++) {
+      storage += allStores[n].cookiesSoldPerHour[i];
+      console.log(storage);
+    }
+  }
+  console.log(storage);
+}
+
+
 // GENERATE SALES DATA
 pike.randomCust();
 pike.unitsSold();
-
 airport.randomCust();
 airport.unitsSold();
-
 center.randomCust();
 center.unitsSold();
-
 hill.randomCust();
 hill.unitsSold();
-
 alki.randomCust();
 alki.unitsSold();
 
 // RENDER TABLE
-makeHeaderRow();
+makeTableHeader();
 pike.makeTableRow();
 airport.makeTableRow();
 center.makeTableRow();
 hill.makeTableRow();
 alki.makeTableRow();
+
+makeTableFooter();
 
 // DO NOT DELETE: this makes all the table rows/data in one fell swoop
 // Store.prototype.makeTableRow = function() {
