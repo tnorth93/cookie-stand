@@ -17,8 +17,8 @@ function Store(location, minHourCust, maxHourCust, avgUnitSale) {
   this.totalCookiesSold = 0;
   this.randomCust();
   this.unitsSold();
-  this.makeTableRow();
   allStores.push(this);
+  this.makeTableRow();
 }
 
 // GENERATE RANDOM NUMBER OF CUSTOMERS EACH HOUR LOGIC-----------------
@@ -40,7 +40,6 @@ Store.prototype.unitsSold = function() {
 
 // GENERATE TABLE HEADER LOGIC-----------------------------------------
 function makeTableHeader() {
-  var table = document.getElementById('table');
   for (var i = -1; i < businessHours.length; i++) {
     var thEl = document.createElement('th');
     thEl.textContent = businessHours[i];
@@ -53,7 +52,6 @@ function makeTableHeader() {
 
 // GENERATE TABLE DATA LOGIC-------------------------------------------
 Store.prototype.makeTableRow = function() {
-  var table = document.getElementById('table');
   var tableRow = document.createElement('tr');
   tableRow.textContent = this.loc;
   table.appendChild(tableRow);
@@ -69,10 +67,10 @@ Store.prototype.makeTableRow = function() {
 
 // GENERATE TABLE FOOTER LOGIC----------------------------------------
 function makeTableFooter() {
-  var table = document.getElementById('table');
   var tFootTotal = document.createElement('td');
   tFootTotal.textContent = 'Total';
   table.appendChild(tFootTotal);
+  var total = 0;
   for (var i = 0; i < businessHours.length; i++) {
     var storage = 0;
     for (var n = 0; n < allStores.length; n++) {
@@ -81,8 +79,11 @@ function makeTableFooter() {
     var tFoot = document.createElement('td');
     tFoot.textContent = storage;
     table.appendChild(tFoot);
-    console.log(storage);
+    total += storage;
   }
+  var tTotal = document.createElement('td');
+  tTotal.textContent = total;
+  table.appendChild(tTotal);
 }
 
 Store.renderAllStores = function() {
@@ -90,6 +91,7 @@ Store.renderAllStores = function() {
     allStores[i].makeTableRow();
   }
 };
+makeTableHeader();
 
 // NEW STORE FORM LOGIC-----------------------------------
 Store.addNewStore = function(event) {
@@ -113,6 +115,7 @@ new Store('Alki', 2, 16, 4.6);
 
 storeForm.addEventListener('submit', Store.addNewStore);
 makeTableFooter();
+
 // DO NOT DELETE: this makes all the table rows/data in one fell swoop
 // Store.prototype.makeTableRow = function() {
 //   for (var i = 0; i < allStores.length; i++) {

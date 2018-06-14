@@ -2,7 +2,8 @@
 <head>
   <title></title>
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sales-style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 </head>
 <body>
   <h1>Salmon Cookie Sales</h1>
@@ -12,18 +13,19 @@
     <fieldset>
       <legend>Add A New Store</legend>
       <label for="storeLocation">Location:</label>
-      <input name="storeLocation" type="text" required>
+      <input name="storeLocation" type="text" placeholder="Name" required>
 
       <label for="minCust">Minimum Hourly Customers:</label>
-      <input name="minCust" type="number" required>
+      <input name="minCust" type="number" placeholder="Min" min=0 required>
 
       <label for="maxCust">Maximum Hourly Customers:</label>
-      <input name="maxCust" type="number" required>
+      <input name="maxCust" type="number" placeholder="Max" min=0 required>
 
-      <label for="avgUnitSale">Average of Cookies Sold Per Customer:</label>
-      <input name="avgUnitSale" type="number" required>
+      <label for="avgUnitSale">Average Cookies Sold Per Customer:</label>
+      <input name="avgUnitSale" type="number" placeholder="Average" step="0.1" min=0 required>
 
       <button>Submit</button>
+      <input type="reset" value="Reset the Form">
     </fieldset>
   </form>
 
