@@ -40,7 +40,6 @@ Store.prototype.unitsSold = function() {
 
 // GENERATE TABLE HEADER LOGIC-----------------------------------------
 function makeTableHeader() {
-  var table = document.getElementById('table');
   for (var i = -1; i < businessHours.length; i++) {
     var thEl = document.createElement('th');
     thEl.textContent = businessHours[i];
@@ -53,7 +52,6 @@ function makeTableHeader() {
 
 // GENERATE TABLE DATA LOGIC-------------------------------------------
 Store.prototype.makeTableRow = function() {
-  var table = document.getElementById('table');
   var tableRow = document.createElement('tr');
   tableRow.textContent = this.loc;
   table.appendChild(tableRow);
@@ -69,9 +67,9 @@ Store.prototype.makeTableRow = function() {
 
 // GENERATE TABLE FOOTER LOGIC----------------------------------------
 function makeTableFooter() {
-  var table = document.getElementById('table');
   var tFootTotal = document.createElement('td');
   tFootTotal.textContent = 'Total';
+  var total = 0;
   table.appendChild(tFootTotal);
   for (var i = 0; i < businessHours.length; i++) {
     var storage = 0;
@@ -81,8 +79,11 @@ function makeTableFooter() {
     var tFoot = document.createElement('td');
     tFoot.textContent = storage;
     table.appendChild(tFoot);
-    console.log(storage);
+    total += storage;
   }
+  var totalTotal = document.createElement('td');
+  totalTotal.textContent = total;
+  table.appendChild(totalTotal);
 }
 
 Store.renderAllStores = function() {
