@@ -69,6 +69,7 @@ Store.prototype.makeTableRow = function() {
 function makeTableFooter() {
   var tFootTotal = document.createElement('td');
   tFootTotal.textContent = 'Total';
+  var total = 0;
   table.appendChild(tFootTotal);
   var total = 0;
   for (var i = 0; i < businessHours.length; i++) {
@@ -81,9 +82,15 @@ function makeTableFooter() {
     table.appendChild(tFoot);
     total += storage;
   }
+<<<<<<< HEAD
   var tTotal = document.createElement('td');
   tTotal.textContent = total;
   table.appendChild(tTotal);
+=======
+  var totalTotal = document.createElement('td');
+  totalTotal.textContent = total;
+  table.appendChild(totalTotal);
+>>>>>>> 4593d08e7ffe52c43a7e475c3839ea85b6ab65df
 }
 
 Store.renderAllStores = function() {
