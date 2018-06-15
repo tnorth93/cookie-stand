@@ -114,20 +114,3 @@ new Store('Alki', 2, 16, 4.6);
 
 storeForm.addEventListener('submit', Store.addNewStore);
 makeTableFooter();
-// DO NOT DELETE: this makes all the table rows/data in one fell swoop
-// Store.prototype.makeTableRow = function() {
-//   for (var i = 0; i < allStores.length; i++) {
-//     var table = document.getElementById('table');
-//     var tableRow = document.createElement('tr');
-//     tableRow.textContent = allStores[i].loc;
-//     table.appendChild(tableRow);
-//     for (var n = 0; n < this.cookiesSoldPerHour.length; n++) {
-//       var tableData = document.createElement('td');
-//       tableData.textContent = allStores[i].cookiesSoldPerHour[n];
-//       tableRow.appendChild(tableData);
-//     }
-//     var tableDataTotal = document.createElement('td');
-//     tableDataTotal.textContent = allStores[i].totalCookiesSold;
-//     tableRow.appendChild(tableDataTotal);
-//   }
-// };
