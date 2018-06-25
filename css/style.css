@@ -135,3 +135,24 @@ section img {
   font-size: 35px;
   margin: 0 auto;
 }
+
+#secondary {
+  text-align: center;
+  margin: 80px auto 30px auto;
+  background-color: #72FA80;
+  width: 50%;
+  border-radius: 10px;
+}
+
+#secondary h2 {
+  text-align: center;
+  margin: 0 auto;
+  clear: both;
+  margin-right: 700px;
+}
+
+#secondary li {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
